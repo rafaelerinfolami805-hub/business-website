@@ -371,12 +371,25 @@
       }
 
       if (contactForm) {
-        contactForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Message sent successfully!");
-        });
-      }
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    
+    // Hide form, show success message
+    contactForm.innerHTML = `
+      <div style="text-align:center; padding:40px 0;">
+        <h2 style="color:#16a34a; margin-bottom:15px;">Message Sent Successfully!</h2>
+        <p style="color:#555; margin-bottom:25px;">Thank you for contacting us. We will reply soon.</p>
+        <button type="button" id="resetForm" style="padding:12px 25px; background:#2563eb; color:white; border:none; border-radius:8px; cursor:pointer;">Send Another</button>
+      </div>
+    `;
 
+    // Reset form when user clicks Send Another
+    document.getElementById("resetForm").addEventListener("click", () => {
+      location.reload(); // reloads the page to original form
+    });
+  });
+        }
+  
       document.querySelectorAll("nav a").forEach(anchor => {
         anchor.addEventListener("click", function(e) {
           e.preventDefault();
